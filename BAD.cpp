@@ -244,10 +244,10 @@ void BAD::computeBAD(const cv::Mat &integral_img,
 
   /////////////////// Parallel Loop to process descriptors ////////////////////
 
-#ifndef CV_BEBLID_PARALLEL
+#ifndef UPM_BAD_PARALLEL
   const cv::Range range(0, keypoints.size());
 #else
-  cv::parallel_for_(cv::Range(0, int(keypoints.size())), [&](const Range &range)
+  cv::parallel_for_(cv::Range(0, int(keypoints.size())), [&](const cv::Range &range){
 #endif
   // Get a pointer to the first element in the range
   // Get a pointer to the first element in the range

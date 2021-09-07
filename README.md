@@ -23,6 +23,7 @@ make -j
 sudo make install
 ```
 
+* NOTE: The code also compile with OpenCV 3, but without parallel for's. Thus, the description will be slower.
 </details>
 
 ## Compile and Run

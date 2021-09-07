@@ -5,8 +5,6 @@
  */
 #include "HashSIFT.h"
 
-#define UPM_PARALLEL_HASH_SIFT
-
 namespace upm {
 
 HashSIFT::HashSIFT(float cropping_scale,

@@ -5,8 +5,6 @@
  */
 #include "PatchSIFT.h"
 
-#define UPM_PARALLEL_SIFT
-
 namespace upm {
 
 void PatchSIFT::calcSIFTDescriptor(const cv::Mat &gray, cv::Mat descriptor) {
