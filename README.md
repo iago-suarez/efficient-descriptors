@@ -11,22 +11,38 @@ In our experiments we evaluate the accuracy, execution time and energy consumpti
 
 ## Video
 <div style="text-align:center;">
-<iframe width="100%" height="530" src="https://www.youtube.com/embed/3WxjxPjDGSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<video width="100%" autoplay controls muted>
+  <source src="imgs/RAL-video-1080p.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 </div>
 
 ## Learning Efficient Local Descriptors
 
 <p>
 	The goal of any local feature descriptor is to learn a similarity function \( \mathcal{S}(\cdot, \cdot) \) between local features. 
-	We define the training objective of our descriptors with the Triplet Ranking Loss (TRL). It brings different descriptions (\( \mathbf{a}_i \), \( \mathbf{p}_i \)) of the same scene point closer while pushing apart descriptors from other scene points \( \mathbf{n}_i \). Its benefit compared with contrastive pair-wise loss is that it is more related to the nearest neighbors matching task, where a good keypoint match is produced only if the correct corresponding keypoint is the close in descriptor distance.
+	We define the training objective \( \mathcal{L}_{\text{TRL}} \)  of our descriptors with the Triplet Ranking Loss (TRL). It brings different descriptions (\( \mathbf{a}_i \), \( \mathbf{p}_i \)) of the same scene point closer while pushing apart descriptors from other scene points \( \mathbf{n}_i \). Its benefit compared with contrastive pair-wise loss is that it is more related to the nearest neighbors matching task, where a good keypoint match is produced only if the correct corresponding keypoint is the close in descriptor distance.
 </p>
 <p>
 	Hard Negative Mining challenges the TRL with different scene points that have the closest description. At each iteration, we choose our negative \( \mathbf{n}_i \) as the hardest in batch (i.e., the one with the smallest descriptor distance).
 </p>
 
-<div width="100%" style="text-align: center;">
-	<img width="100%" src="imgs/trl_and_hnm_diagram.jpg">
+<div class="bootstrap-wrapper" style="text-align: center;">
+    <div>
+        <div class="row align-self-center">
+            <div class="col-md-4 color-separated">
+            	<img src="imgs/trl_and_hnm_diagram1.jpg" alt="constrative learning">
+            </div>
+            <div class="col-md-4 color-separated">
+            	<img src="imgs/trl_and_hnm_diagram2.jpg" alt="triplet ranking loss">
+            </div>
+            <div class="col-md-4 color-separated">
+            	<img src="imgs/trl_and_hnm_diagram3.jpg" alt="hard negative mining">
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 ## Results
@@ -37,7 +53,7 @@ Here we add some extra results showing the performance of the proposed descripto
         <div class="row align-self-center"> <!-- Hidden on small screens -->
             <div class="col-md-6">
             	<h4>BAD-256 Reconstruction of Madrid Metropolis</h4>
-            	<video width="100%" autoplay muted>
+            	<video width="100%" autoplay muted loop>
 				  <source src="imgs/bad256_mad_metropolis_reconstruction.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 				</video>
