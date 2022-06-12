@@ -1,0 +1,78 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.author-name{
+	color: white;
+	text-decoration: revert;
+}
+
+.project-tagline {
+	margin-bottom: 1rem !important;
+}
+
+.logos-image{
+	margin-bottom: -1rem;
+	width: 80%;
+}
+
+.euroc-img{
+	margin-top: 4rem;
+}
+
+@media screen and (max-width: 64em){
+	.euroc-img{
+		margin-top: 0rem;
+	}
+}
+
+@media screen and (min-width: 64em){
+	.project-name {
+	    font-size: 2.5rem;
+	}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em){
+	.project-name {
+	    font-size: 1.75rem;
+	}
+	.page-header {
+    	padding: 1rem 4rem;
+	}
+}
+
+@media screen and (max-width: 42em){
+	.project-name {
+	    font-size: 1.5rem;
+	}
+	.page-header {
+    	padding: 1rem 4rem;
+	}
+}
+
+@media screen and (min-width: 64em){
+	.main-content {
+	    max-width: none;
+	}
+	.page-header {
+	    padding: 2rem 6rem 1rem 6rem;
+	}
+	.logos-image{
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 72em){
+	.main-content {
+	    max-width: 96rem;
+	}
+	.page-header {
+	    padding: 2rem 6rem 1rem 6rem;
+	}	
+
+	.logos-image{
+		width: 55%;
+	}
+}
+

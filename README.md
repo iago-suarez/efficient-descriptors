@@ -1,16 +1,55 @@
-![Graffter Banner](imgs/banner.jpg)
+<div width="100%" style="text-align: center;">
+	<img class="logos-image" src="imgs/banner.jpg">
+</div>
 
-The advent of a panoply of resource limited devices opens up new challenges in the design of computer vision algorithms with a clear compromise between accuracy and computational requirements. In this paper we address this and introduce binary image descriptors that establish new operating points in the state-of-the-art's accuracy vs. resources trade-off curve.
+## Abstract
+<p align="justify">The advent of a panoply of resource limited devices opens up new challenges in the design of computer vision algorithms with a clear compromise between accuracy and computational requirements. In this paper we address this and introduce binary image descriptors that establish new operating points in the state-of-the-art's accuracy vs. resources trade-off curve.
 We revisit descriptors based on pixel differences and gradients to introduce respectively BAD (Box Average Difference), the fastest binary descriptor in the literature, and HashSIFT.
 They are trained using triplet ranking loss, hard negative mining and anchor swap, combined with a new efficient feature selection algorithm.
 In our experiments we evaluate the accuracy, execution time and energy consumption of the proposed descriptors. We show that they are the most accurate when confronted with competing techniques with similar computational requirements. Further, in a planar image registration, HashSIFT  performs  on  par  with  the  top deep learning-based descriptors, being several orders of magnitude more efficient.
+</p>
 
+## Video
 <div style="text-align:center;">
-<iframe width="720" height="480" src="https://www.youtube.com/embed/3WxjxPjDGSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="530" src="https://www.youtube.com/embed/3WxjxPjDGSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+## Learning Efficient Local Descriptors
+
+<p>
+	The goal of any local feature descriptor is to learn a similarity function \( \mathcal{S}(\cdot, \cdot) \) between local features. 
+	We define the training objective of our descriptors with the Triplet Ranking Loss (TRL). It brings different descriptions (\( \mathbf{a}_i \), \( \mathbf{p}_i \)) of the same scene point closer while pushing apart descriptors from other scene points \( \mathbf{n}_i \). Its benefit compared with contrastive pair-wise loss is that it is more related to the nearest neighbors matching task, where a good keypoint match is produced only if the correct corresponding keypoint is the close in descriptor distance.
+</p>
+<p>
+	Hard Negative Mining challenges the TRL with different scene points that have the closest description. At each iteration, we choose our negative \( \mathbf{n}_i \) as the hardest in batch (i.e., the one with the smallest descriptor distance).
+</p>
+
+<div width="100%" style="text-align: center;">
+	<img width="100%" src="imgs/trl_and_hnm_diagram.jpg">
+</div>
+
 
 ## Results
 Here we add some extra results showing the performance of the proposed descriptors with other approaches in the State of the Art:
+
+<div class="bootstrap-wrapper" style="text-align: center;">
+    <div class="container">
+        <div class="row align-self-center"> <!-- Hidden on small screens -->
+            <div class="col-md-6">
+            	<h4>BAD-256 Reconstruction of Madrid Metropolis</h4>
+            	<video width="100%" autoplay muted>
+				  <source src="imgs/bad256_mad_metropolis_reconstruction.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+				</video>
+            </div>
+            <div class="col-md-6">
+            	<h4>BAD-512 Fundamental matrix estimation (EuRoC)</h4>
+            	<img class="euroc-img" width="100%" src="imgs/euroc_datase_fundamental_mat.gif">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 ### ETH Benchmark
 Full results table in ETH Benchmark:
@@ -18,7 +57,7 @@ Full results table in ETH Benchmark:
 
 | | # Registered | # Sparse Points | # Obervations | Track Length | Reproj. Error | # Inliner Pairs | # Inliner Matches | # Dense Points |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Fountain  (11 images)  |  |  |  |  |  |  |  |  |
+| <b>Fountain  (11 images) </b>  |  |  |  |  |  |  |  |  |
 | ORB | 11 | 15001 | 71171 | 4.744417 | 0.384306 | 55 | 125033 | 306277 |
 | BEBLID-256 | 11 | 15539 | 74044 | 4.765043 | 0.394489 | 55 | 133838 | 303771 |
 | LATCH | 11 | 15384 | 73907 | 4.804147 | 0.401214 | 55 | 135643 | 307421 |
@@ -32,7 +71,7 @@ Full results table in ETH Benchmark:
 | TFeat-m* | 11 | 16278 | 78880 | 4.845804 | 0.431607 | 55 | 153725 | 305073 |
 | HardNet | 11 | 17071 | 83973 | 4.919044 | 0.477603 | 55 | 183331 | 305701 |
 | CDbin-256b | 11 | 16607 | 81360 | 4.899139 | 0.455184 | 55 | 168946 | 305534 |
-| Herzjesu (8 images) |  |  |  |  |  |  |  |  |
+| <b>Herzjesu (8 images)</b> |  |  |  |  |  |  |  |  |
 | ORB | 8 | 7619 | 31475 | 4.13112 | 0.41019 | 28 | 46625 | 237948 |
 | BEBLID-256 | 8 | 7922 | 33414 | 4.217874 | 0.429793 | 28 | 51720 | 241862 |
 | LATCH | 8 | 7871 | 33058 | 4.199975 | 0.430669 | 28 | 50739 | 240523 |
@@ -46,7 +85,7 @@ Full results table in ETH Benchmark:
 | TFeat-m* | 8 | 8631 | 36727 | 4.255243 | 0.476186 | 28 | 60675 | 239675 |
 | HardNet | 8 | 9444 | 40483 | 4.286637 | 0.517284 | 28 | 74867 | 239362 |
 | CDbin-256b | 8 | 8997 | 38650 | 4.295876 | 0.497678 | 28 | 67802 | 242179 |
-| South Building (128 images) |  |  |  |  |  |  |  |  |
+| <b>South Building (128 images)</b> |  |  |  |  |  |  |  |  |
 | ORB | 128 | 137627 | 695789 | 5.055614 | 0.496237 | 8128 | 2285089 | 2137625 |
 | BEBLID-256 | 128 | 141604 | 710290 | 5.016031 | 0.500718 | 8128 | 2347648 | 2134091 |
 | LATCH | 128 | 139584 | 716808 | 5.135316 | 0.521234 | 8128 | 2345677 | 2144368 |
@@ -60,7 +99,7 @@ Full results table in ETH Benchmark:
 | Tfeat-m* | 128 | 152834 | 775159 | 5.071902 | 0.574171 | 8128 | 2721956 | 2149925 |
 | HardNet | 128 | 168536 | 878847 | 5.214595 | 0.642522 | 8128 | 3344759 | 2122914 |
 | CDbin-256b | 128 | 160589 | 832281 | 5.182678 | 0.616106 | 8128 | 3124870 | 2128460 |
-| Madrid Metropolis (1344 images) |  |  |  |  |  |  |  |  |
+| <b>Madrid Metropolis (1344 images) </b> |  |  |  |  |  |  |  |  |
 | ORB | 457 | 135826 | 576138 | 4.241736 | 0.641296 | 898475 | 77323855 | 1085693 |
 | BEBLID-256 | 549 | 174257 | 705651 | 4.049484 | 0.656167 | 898491 | 78223028 | 1153261 |
 | LATCH | 573 | 186886 | 759581 | 4.064408 | 0.655908 | 898825 | 66395879 | 1245053 |
@@ -74,3 +113,21 @@ Full results table in ETH Benchmark:
 | TFeat-m* | 690 | 262790 | 986470 | 3.753834 | 0.677615 | 897709 | 75823683 | 1233791 |
 | HardNet | 849 | 359610 | 1438909 | 4.001304 | 0.701354 | 898257 | 79144113 | 1436234 |
 | CDbin-256b | 769 | 260690 | 1108018 | 4.250328 | 0.696556 | 898274 | 79222034 | 1347656 |
+
+# Citation
+
+If you use this project please cite:
+
+```
+@article{suarez2021revisiting,
+  title={Revisiting Binary Local Image Description for Resource Limited Devices},
+  author={Su{\'a}rez, Iago and Buenaposada, Jos{\'e} M and Baumela, Luis},
+  journal={IEEE Robotics and Automation Letters},
+  volume={6},
+  number={4},
+  pages={8317--8324},
+  year={2021},
+  publisher={IEEE}
+}
+
+```
