@@ -21,6 +21,20 @@
 	margin-top: 4rem;
 }
 
+.eth-db-name{
+	color: white;
+	background-color: #159957;
+	text-align: center
+}
+
+thead{
+	background-color: #eee;
+}
+
+#class-eth-results{
+	font-size: smaller;
+}
+
 @media screen and (max-width: 64em){
 	.euroc-img{
 		margin-top: 0rem;
@@ -60,6 +74,13 @@
 	}
 	.logos-image{
 		width: 70%;
+	}
+}
+
+@media screen and (max-width: 90em){
+
+	#class-eth-results{
+		font-size: small;
 	}
 }
 
